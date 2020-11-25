@@ -1,0 +1,27 @@
+<script type="text/javascript">
+function myFunction(){
+    numbers = document.getElementById("numbers").value.split(", ").map(i=>Number(i))
+    var totalSum = 0;
+    for(var i in numbers) {
+        console.log(i)
+        console.log(numbers[i])
+        totalSum += numbers[i];
+    }
+
+    avg =  totalSum / numbers.length
+    var result = 0
+    for(var i in numbers){
+        result += Math.pow(numbers[i] - avg, 2)
+    }
+    document.getElementById("result").innerHTML = result
+    
+}
+</script>
+
+<html>
+    <body>
+        <input type="text", id="numbers">
+        <button onclick="myFunction()">Click me</button>
+        <p id="result"></p>
+    </body>
+</html>
