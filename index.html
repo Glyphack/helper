@@ -1,27 +1,70 @@
 <script type="text/javascript">
-function myFunction(){
-    numbers = document.getElementById("numbers").value.split(", ").map(i=>Number(i))
-    var totalSum = 0;
-    for(var i in numbers) {
-        console.log(i)
-        console.log(numbers[i])
-        totalSum += numbers[i];
+  function myFunction() {
+    numbers = document
+      .getElementById('numbers')
+      .value.split(', ')
+      .map((i) => Number(i));
+    avg = calcAvg(numbers);
+    var result = 0;
+    for (var i in numbers) {
+      result += Math.pow(numbers[i] - avg, 2);
+    }
+    document.getElementById('avg').innerHTML = avg;
+    document.getElementById('result').innerHTML = result;
+  }
+
+  function yourFunction() {
+    numbers1 = document
+      .getElementById('xha')
+      .value.split(', ')
+      .map((i) => Number(i));
+    numbers2 = document
+      .getElementById('yha')
+      .value.split(', ')
+      .map((i) => Number(i));
+
+    avg1 = calcAvg(numbers1);
+    avg2 = calcAvg(numbers2);
+
+    result = 0;
+
+    for (var i in numbers1) {
+      result += (numbers1[i] - avg1) * (numbers2[i] - avg2);
     }
 
-    avg =  totalSum / numbers.length
-    var result = 0
-    for(var i in numbers){
-        result += Math.pow(numbers[i] - avg, 2)
+    document.getElementById('avg2-x').innerHTML = avg1;
+    document.getElementById('avg2-y').innerHTML = avg2;
+    document.getElementById('result2').innerHTML = result;
+  }
+
+  function calcAvg(numbers) {
+    var totalSum = 0;
+    for (var i in numbers) {
+      totalSum += numbers[i];
     }
-    document.getElementById("result").innerHTML = result
-    
-}
+
+    avg = totalSum / numbers.length;
+
+    return avg;
+  }
 </script>
 
 <html>
-    <body>
-        <input type="text", id="numbers">
-        <button onclick="myFunction()">Click me</button>
-        <p id="result"></p>
-    </body>
+  <body>
+    <input type="text" , id="numbers" />
+    <button onclick="myFunction()">Click me</button>
+    <p>avg:</p>
+    <p id="avg"></p>
+    <p id="result"></p>
+
+    <input type="text" , id="xha" />
+    <input type="text" , id="yha" />
+    <button onclick="yourFunction()">Click me</button>
+    <p>x:</p>
+    <p id="avg2-x"></p>
+    <p>y:</p>
+    <p id="avg2-y"></p>
+    <p>result:</p>
+    <p id="result2"></p>
+  </body>
 </html>
